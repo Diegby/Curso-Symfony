@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Post {% endblock %}
+
+{% block body %}
+
+    <div class="p-4">
+        <div class="card d-flex justify-content-center">
+            <div class="card-header">
+                <h2 class="card-title"> {{ post.title }}</h2>
+                <h6 class="card-subtitle"> Autor: {{ post.user }}</h6>
+            </div>
+
+            {% for comment in post.comments  %}
+                {% if comment %}
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ comment.user }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> Autor: {{ post.user }}</h6>
+                    </div>
+
+                    {% if loop.index != post.comments|length %}
+                        <hr style="color: black">
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <div class="card-footer">
+                <a href="{{ path('dashboard') }}" class="card-link"> Volver al Dashboard </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
